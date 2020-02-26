@@ -1,5 +1,12 @@
-import { Controller, Get, Post } from '@nestjs/common';
-import { ApiTags, ApiOperation } from '@nestjs/swagger';
+import { Controller, Get, Post, Body } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiPropertyOptional, ApiProperty } from '@nestjs/swagger';
+
+class CreatePostDto {
+  @ApiProperty({ description: '帖子详情' })
+  title: string
+  @ApiProperty({ description: '帖子内容' })
+  content: string
+}
 
 @Controller('posts')
 @ApiTags('默认')
@@ -15,8 +22,14 @@ export class PostsController {
   }
 
   @Post()
-  create() {
-    return true
+  @ApiOperation({
+    summary: '创建帖子'
+  })
+
+  @Post()
+  @ApiOperation({ summary: '创建帖子' })
+  create(@Body() body: CreatePostDto) {
+    return body
   }
 
   @Get(':id')
