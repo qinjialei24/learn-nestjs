@@ -1,11 +1,15 @@
 import { Controller, Get, Post } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiOperation } from '@nestjs/swagger';
 
 @Controller('posts')
 @ApiTags('默认')
+
 export class PostsController {
 
   @Get()
+  @ApiOperation({
+    summary: '显示博客列表'
+  })
   index() {
     return [11]
   }
@@ -19,7 +23,7 @@ export class PostsController {
   detail() {
     return {
       id: 1,
-      title:'111'
+      title: '111'
     }
   }
 
