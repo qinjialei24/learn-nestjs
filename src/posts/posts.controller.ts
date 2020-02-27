@@ -1,3 +1,4 @@
+import { PostModel } from './post.model';
 import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiPropertyOptional, ApiProperty } from '@nestjs/swagger';
 
@@ -17,8 +18,9 @@ export class PostsController {
   @ApiOperation({
     summary: '显示博客列表'
   })
-  index() {
-    return [11]
+  async index() {
+    const data = await PostModel.find()
+    return 'data'
   }
 
   @Post()
