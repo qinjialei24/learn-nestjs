@@ -19,8 +19,12 @@ export class PostsController {
     summary: '显示博客列表'
   })
   async index() {
-    const data = await PostModel.find()
-    return 'data'
+    PostModel.find().then(res => {
+      return '222'
+    }).catch(error => {
+      console.log("TCL: PostsController -> index -> error", error)
+      return error
+    })
   }
 
   @Post()
